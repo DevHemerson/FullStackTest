@@ -1,0 +1,50 @@
+<p>business-partnes works!</p>
+<div>
+  <h2>Lista de Parceiros de Negócios</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let businessPartner of businessPartners">
+        <td>{{ businessPartner.cardCode }}</td>
+        <td>{{ businessPartner.cardName }}</td>
+        <td>
+          <button (click)="editBusinessPartner(businessPartner)">Editar</button>
+          <button (click)="deleteBusinessPartner(businessPartner.cardCode)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Criar Novo Parceiro de Negócios</h2>
+  <form (submit)="createBusinessPartner()">
+    <label>
+      Código:
+      <input type="text" [(ngModel)]="newBusinessPartner.cardCode" name="cardCode" required>
+    </label>
+    <label>
+      Nome:
+      <input type="text" [(ngModel)]="newBusinessPartner.cardName" name="cardName" required>
+    </label>
+    <button type="submit">Salvar</button>
+  </form>
+
+  <h2>Editar Parceiro de Negócios</h2>
+  <form *ngIf="editingBusinessPartner" (submit)="updateBusinessPartner(editingBusinessPartner)">
+    <label>
+      Código:
+      <input type="text" [(ngModel)]="editingBusinessPartner.cardCode" name="cardCode" required>
+    </label>
+    <label>
+      Nome:
+      <input type="text" [(ngModel)]="editingBusinessPartner.cardName" name="cardName" required>
+    </label>
+    <button type="submit">Salvar</button>
+  </form>
+</div>
+
